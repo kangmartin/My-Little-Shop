@@ -1,9 +1,9 @@
 <script setup>
-import Guest from "./components/Guest.vue";
+import HeaderGuest from "./components/HeaderGuest.vue";
 </script>
 
 <template>
-  <Guest />
+  <HeaderGuest/>
 </template>
 
 <style scoped>
