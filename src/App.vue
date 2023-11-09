@@ -1,9 +1,9 @@
 <script setup>
-import User from "./components/User.vue";
+import Guest from "./components/Guest.vue";
 </script>
 
 <template>
-  <User />
+  <Guest />
 </template>
 
 <style scoped>
