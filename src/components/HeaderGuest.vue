@@ -16,8 +16,8 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 1rem 3%;
     border-radius: 4px;
-    margin-left: 7%;
-    margin-right: 7%;
+    margin-left: 6%;
+    margin-right: 6%;
   }
 
   .nav {
