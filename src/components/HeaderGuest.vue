@@ -9,10 +9,9 @@
     </nav>
   </header>
 </template>
-
 <style scoped>
 
-  .header {
+.header {
     background-color: #ecf0f1;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 1rem 3%;
@@ -53,5 +52,4 @@
     padding: 4px 4px 4px 4px;
   }
 
-  
 </style>

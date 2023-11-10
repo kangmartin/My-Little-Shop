@@ -1,0 +1,106 @@
+<template>
+    <div class="product-card">
+      <img :src="image" :alt="title" class="product-image"/>
+      <div class="product-details">
+        <h2 class="product-title">{{ title }}</h2>
+        <div class="product-price">
+          <span v-if="isOnSale" class="original-price">{{ originalPrice }}€</span>
+          <span class="current-price">{{ currentPrice }}€</span>
+          <span v-if="isOnSale" class="discount-label">{{ discountPercent }}% Off</span>
+        </div>
+        <div class="product-rating">
+          <span v-for="star in 5" :key="star" class="star" :class="{ 'filled': star <= rating }">&#9733;</span>
+        </div>
+      </div>
+    </div>
+</template>
+  
+  <script>
+  export default {
+    name: 'SingleProduct',
+    props: {
+      title: String,
+      image: String,
+      originalPrice: Number,
+      currentPrice: Number,
+      rating: Number
+    },
+    computed: {
+      isOnSale() {
+        return this.originalPrice > this.currentPrice;
+      },
+      discountPercent() {
+        return Math.round((1 - this.currentPrice / this.originalPrice) * 100);
+      }
+    },
+  
+  };
+  </script>
+  
+  <style scoped>
+  .product-card {
+    max-width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .product-details {
+    padding: 10px;
+  }
+  
+  .product-title {
+    font-size: 1.2em;
+    margin: 0;
+    color: #333;
+  }
+  
+  .product-price {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    color: #666;
+  }
+  
+  .current-price {
+    font-size: 1.5em;
+    color: #E44D26;
+  }
+  
+  .discount-label {
+    background-color: #E44D26;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 5px;
+    font-size: 0.8em;
+  }
+  
+  .product-rating {
+    display: inline-block;
+  }
+  
+  .star {
+    color: gold;
+    font-size: 1.2em;
+  }
+  
+  .star.filled {
+    color: #FFA500;
+  }
+  </style>
+  
