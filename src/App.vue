@@ -4,15 +4,16 @@ import Product from "./components/Product.vue";
 </script>
 
 <template>
-  <HeaderGuest/>
+      <HeaderGuest/>
 
 
-     <Product
+      <Product
       title="Rolex RCV Edition"
       image="./src/assets/images/watch.png"
-      :originalPrice="85000"
-      :currentPrice="60000"
-      :rating="5"/>
+      :originalPrice="100"
+      :currentPrice="50"
+      :rating="3"/>
+     
  
 
 </template>

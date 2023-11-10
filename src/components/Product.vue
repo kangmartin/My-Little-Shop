@@ -11,6 +11,8 @@
         <div class="product-rating">
           <span v-for="star in 5" :key="star" class="star" :class="{ 'filled': star <= rating }">&#9733;</span>
         </div>
+        <br/><br/>
+        <button v-if="showAddToCart" class="add-to-cart-button" @click="addToCart">Add to cart</button>
       </div>
     </div>
 </template>
@@ -23,17 +25,25 @@
       image: String,
       originalPrice: Number,
       currentPrice: Number,
-      rating: Number
+      rating: Number,
+      showAddToCart: {
+        type: Boolean,
+        default: true
+      }
     },
     computed: {
       isOnSale() {
         return this.originalPrice > this.currentPrice;
       },
       discountPercent() {
-        return Math.round((1 - this.currentPrice / this.originalPrice) * 100);
+        return Math.round((this.originalPrice - this.currentPrice) / this.originalPrice * 100);
       }
     },
-  
+    methods: {
+      addToCart() {
+        alert('This product has been added to your cart');
+      }
+    }
   };
   </script>
   
@@ -79,11 +89,11 @@
   
   .current-price {
     font-size: 1.5em;
-    color: #E44D26;
+    color: #1a73e8;
   }
   
   .discount-label {
-    background-color: #E44D26;
+    background-color: #1a73e8;
     color: white;
     padding: 2px 5px;
     border-radius: 5px;
@@ -102,5 +112,15 @@
   .star.filled {
     color: #FFA500;
   }
-  </style>
+
+  .add-to-cart-button {
+    background-color: #1a73e8;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1em;
+    border: none;
+    cursor: pointer;
+  }
   
+  </style>
