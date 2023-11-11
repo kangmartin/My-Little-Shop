@@ -1,11 +1,21 @@
 <script setup>
 import HeaderGuest from "./components/HeaderGuest.vue";
-import ProductList from './components/ProductList.vue';
+import Product from "./components/Product.vue";
 </script>
 
 <template>
       <HeaderGuest/>
-      <ProductList/>
+
+
+      <Product
+      title="Rolex RCV Edition"
+      image="./src/assets/images/watch.png"
+      :originalPrice="100"
+      :currentPrice="50"
+      :rating="3"/>
+     
+ 
+
 </template>
 
 <style scoped>

@@ -28,7 +28,7 @@
       rating: Number,
       showAddToCart: {
         type: Boolean,
-        default: false
+        default: true
       }
     },
     computed: {
@@ -49,14 +49,13 @@
   
   <style scoped>
   .product-card {
-    width: 300px;
-    border: 0.5px solid #ddd;
+    max-width: 300px;
+    border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     text-align: center;
-    background-color: #202124;
-    margin-bottom: 30px;
+    background-color: #fff;
   }
   
   .product-image {
@@ -72,7 +71,7 @@
   .product-title {
     font-size: 1.2em;
     margin: 0;
-    color: white;
+    color: #333;
   }
   
   .product-price {
@@ -81,7 +80,6 @@
     align-items: baseline;
     gap: 10px;
     margin: 10px 0;
-    font-weight: bold;
   }
   
   .original-price {
@@ -91,7 +89,7 @@
   
   .current-price {
     font-size: 1.5em;
-    color: white;
+    color: #1a73e8;
   }
   
   .discount-label {
@@ -107,12 +105,12 @@
   }
   
   .star {
-    color: grey;
+    color: gold;
     font-size: 1.2em;
   }
   
   .star.filled {
-    color: gold;
+    color: #FFA500;
   }
 
   .add-to-cart-button {
