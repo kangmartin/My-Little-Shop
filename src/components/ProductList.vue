@@ -7,7 +7,6 @@
         </div>
     </div>
     </div>
-   
 </template>
 
 <script>
@@ -61,6 +60,7 @@ export default {
                     originalPrice: 6500,
                     currentPrice: 6500,
                     rating: 5,
+                    showAddToCart: false,
                 },
                 {
                     title: "Villa in the countryside",
@@ -83,8 +83,13 @@ export default {
                     currentPrice: 1300000,
                     rating: 4,
                 },
-               
-                
+                {
+                    title: "Villa in the countryside",
+                    image: "./src/assets/images/villa.jpg",
+                    originalPrice: 2000000,
+                    currentPrice: 1300000,
+                    rating: 4,
+                },
                 
             ],
         };
@@ -94,12 +99,12 @@ export default {
 
 <style scoped>
 .product-list {
-    display: inline-flex;
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    margin-top: 60px;
-    gap: 2%
+    gap: 1%;
+    margin: 60px 8%;
+
 }
 
 </style>
