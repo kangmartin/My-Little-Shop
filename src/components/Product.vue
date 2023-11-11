@@ -28,7 +28,7 @@
       rating: Number,
       showAddToCart: {
         type: Boolean,
-        default: true
+        default: false
       }
     },
     computed: {
