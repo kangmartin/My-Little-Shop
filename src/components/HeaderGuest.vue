@@ -3,8 +3,8 @@
     <nav class="nav">
       <a class="nav__link" href="/">My Little Shop</a>
       <div class="nav__right">
-        <a class="nav__link" href="register.html">Register</a>
-        <a class="nav__link" href="login.html">Login</a>
+        <a class="nav__link" href="registration">Register</a>
+        <a class="nav__link" href="login">Login</a>
       </div>
     </nav>
   </header>
@@ -18,6 +18,8 @@
     border-radius: 4px;
     margin-left: 6%;
     margin-right: 6%;
+    margin-top: 2%;
+    width: auto;
   }
 
   .nav {
@@ -53,3 +55,5 @@
   }
 
 </style>
+
+
