@@ -1,40 +1,119 @@
-<script setup>
-
-</script>
-
 <template>
-  <div class="container">
-    <a class="text-header" href="/">Home</a>
-    <div class="right-container">
-      <a class="text-header" href="register.html">Register</a>
-      <div style="margin-left: 30px;"></div>
-      <a class="text-header" href="login.html">Login</a>
-    </div>
-  </div>
+  <header class="header">
+    <nav class="nav">
+      <div class="nav__left">
+        <a href="/">
+          <img src="favicon.ico" alt="Logo" />
+        </a>
+        <a class="nav__link" href="/">
+          My Little Shop</a>
+      </div>
+      <div class="nav__right">
+        <a class="nav__link" href="registration">Register</a>
+        <a class="nav__link" href="login">Login</a>
+      </div>
+    </nav>
+  </header>
 </template>
 
 <style scoped>
+.header {
+  background-color: #ecf0f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem 3%;
+  border-radius: 4px;
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-top: 2%;
+  width: auto;
+}
 
-  .text-header {
-    font-size: 25px;
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__left {
+  display: flex;
+  align-items: center;
+}
+
+.nav__left img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.nav__link {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #333;
+  margin-right: 1rem;
+  transition: color 0.2s ease-in-out;
+  font-weight: bold;
+}
+
+.nav__link:hover {
+  color: #1a73e8;
+}
+
+.nav__right {
+  display: flex;
+  align-items: center;
+}
+
+.nav__right .nav__link {
+  background-color: #1a73e8;
+  border-radius: 4px;
+  color: white;
+  padding: 4px 4px 4px 4px;
+}
+</style>
+<style scoped>
+
+.header {
+    background-color: #ecf0f1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem 3%;
+    border-radius: 4px;
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-top: 2%;
+    width: auto;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+
+  .nav__link {
+    font-size: 1.2rem;
     text-decoration: none;
-    color: black;
+    color: #333;
+    margin-right: 1rem;
+    transition: color 0.2s ease-in-out;
     font-weight: bold;
   }
 
-  .text-header:hover {
+  .nav__link:hover {
     color: #1a73e8;
-    text-decoration: underline;
-  
   }
-  .container{
+
+  .nav__right {
     display: flex;
-    justify-content: space-between;
-    background-color: gray;
-    padding: 10px;
-    border: #1a73e8 2px solid;
+    align-items: center;
   }
-  .right-container {
-    display: flex;
+
+  .nav__right .nav__link{
+    background-color: #1a73e8;
+    border-radius: 4px;
+    color: white;
+    padding: 4px 4px 4px 4px;
   }
+
 </style>
+
+
