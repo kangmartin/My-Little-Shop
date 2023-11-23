@@ -57,6 +57,7 @@
     text-align: center;
     background-color: #202124;
     margin-bottom: 30px;
+    
   }
   
   .product-image {
