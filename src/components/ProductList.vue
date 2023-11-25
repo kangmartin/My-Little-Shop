@@ -1,4 +1,3 @@
-
 <template>
     <div class="container">
     <div class="product-list">
@@ -11,6 +10,13 @@
 
 <script>
 import Product from "./Product.vue";
+import aghImage from "../assets/images/agh.jpg";
+import geldoucheImage from "../assets/images/geldouche.jpg";
+import macbookImage from "../assets/images/macbook.jpg";
+import manetteImage from "../assets/images/manette.jpg";
+import teslaImage from "../assets/images/tesla.webp";
+import watchImage from "../assets/images/watch.png";
+import villaImage from "../assets/images/villa.jpg";
 
 export default {
     components: {
@@ -21,42 +27,42 @@ export default {
             products: [
                 {
                     title: "AGH University Campus",
-                    image: "./src/assets/images/agh.jpg",
+                    image: aghImage,
                     originalPrice: 2000000,
                     currentPrice: 1500000,
                     rating: 2,
                 },
                 {
                     title: "Shampooing",
-                    image: "./src/assets/images/geldouche.jpg",
+                    image: geldoucheImage,
                     originalPrice: 9.99,
                     currentPrice: 9.99,
                     rating: 2.5,
                 },
                 {
                     title: "Macbook Pro 16",
-                    image: "./src/assets/images/macbook.jpg",
+                    image: macbookImage,
                     originalPrice: 2500,
                     currentPrice: 1999,
                     rating: 5,
                 },
                 {
                     title: "PS5 Controller",
-                    image: "./src/assets/images/manette.jpg",
+                    image: manetteImage,
                     originalPrice: 69.99,
                     currentPrice: 59.99,
                     rating: 1,
                 },
                 {
                     title: "Tesla Model 3",
-                    image: "./src/assets/images/tesla.webp",
+                    image: teslaImage,
                     originalPrice: 50000,
                     currentPrice: 40000,
                     rating: 5,
                 },
                 {
                     title: "Rolex Snow Edition",
-                    image: "./src/assets/images/watch.png",
+                    image: watchImage,
                     originalPrice: 6500,
                     currentPrice: 6500,
                     rating: 5,
@@ -64,28 +70,28 @@ export default {
                 },
                 {
                     title: "Villa in the countryside",
-                    image: "./src/assets/images/villa.jpg",
+                    image: villaImage,
                     originalPrice: 2000000,
                     currentPrice: 1300000,
                     rating: 4,
                 },
                 {
                     title: "Villa in the countryside",
-                    image: "./src/assets/images/villa.jpg",
+                    image: villaImage,
                     originalPrice: 2000000,
                     currentPrice: 1300000,
                     rating: 4,
                 },
                 {
                     title: "Villa in the countryside",
-                    image: "./src/assets/images/villa.jpg",
+                    image: villaImage,
                     originalPrice: 2000000,
                     currentPrice: 1300000,
                     rating: 4,
                 },
                 {
                     title: "Villa in the countryside",
-                    image: "./src/assets/images/villa.jpg",
+                    image: villaImage,
                     originalPrice: 2000000,
                     currentPrice: 1300000,
                     rating: 4,
