@@ -3,14 +3,14 @@
     <nav class="nav">
       <div class="nav__left">
         <a href="/">
-          <img src="favicon.ico" alt="Logo" />
+          <img src="/favicon.ico" alt="Logo" />
         </a>
         <a class="nav__link" href="/">
           My Little Shop</a>
       </div>
       <div class="nav__right">
-        <a class="nav__link" href="registration">Register</a>
-        <a class="nav__link" href="login">Login</a>
+        <router-link class="nav__link" to="registration">Register</router-link>
+        <router-link class="nav__link" to="login">Login</router-link>
       </div>
     </nav>
   </header>
