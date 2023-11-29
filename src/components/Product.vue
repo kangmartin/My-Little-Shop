@@ -1,50 +1,51 @@
 <template>
-    <div class="product-card">
-      <img :src="image" :alt="title" class="product-image"/>
-      <div class="product-details">
-        <h2 class="product-title">{{ title }}</h2>
-        <div class="product-price">
-          <span v-if="isOnSale" class="original-price">{{ originalPrice }}€</span>
-          <span class="current-price">{{ currentPrice }}€</span>
-          <span v-if="isOnSale" class="discount-label">{{ discountPercent }}% Off</span>
-        </div>
-        <div class="product-rating">
-          <span v-for="star in 5" :key="star" class="star" :class="{ 'filled': star <= rating }">&#9733;</span>
-        </div>
-        <br/><br/>
-        <button v-if="showAddToCart" class="add-to-cart-button" @click="addToCart">Add to cart</button>
+  <div v-if="products.length > 0" v-for="product in products" :key="product.id" class="product-card">
+    <img :src="'images/' + product.image" alt="Product Image" class="product-image">
+
+    <div class="product-details">
+      <h3 class="product-title">{{ product.name }}</h3>
+      <p class="product-price"><span class="original-price">{{ product.old_price }}€</span></p>
+      <p class="product-price"><span class="current-price">{{ product.actual_price }}€</span></p>
+      <div class="product-rating">
+        <span v-for="star in 5" :key="star" class="star" :class="{ filled: star <= product.rate }">★</span>
       </div>
     </div>
+  </div>
+  <div v-else>
+      <p class="product-title">No products available..</p>
+    </div>
 </template>
+
   
-  <script>
-  export default {
-    name: 'SingleProduct',
-    props: {
-      title: String,
-      image: String,
-      originalPrice: Number,
-      currentPrice: Number,
-      rating: Number,
-      showAddToCart: {
-        type: Boolean,
-        default: false
-      }
-    },
-    computed: {
-      isOnSale() {
-        return this.originalPrice > this.currentPrice;
+<script>
+    import axios from 'axios';
+
+
+    export default {
+      data() {
+        return {
+          productName: '',
+          productImage: '',
+          productOldPrice: 0,
+          productActualPrice: 0,
+          productRate: 0,
+          products: []
+        };
       },
-      discountPercent() {
-        return Math.round((this.originalPrice - this.currentPrice) / this.originalPrice * 100);
+      methods: {
+        async fetchProducts() {
+          try {
+            const response = await axios.get('http://localhost:3000/api/products/all');
+            this.products = response.data;
+          } catch (error) {
+            console.error('Error when fetching list of products', error);
+          }
+        }
+      },
+      mounted() {
+        this.fetchProducts();
       }
-    },
-    methods: {
-      addToCart() {
-        alert('This product has been added to your cart');
-      }
-    }
-  };
+    };
   </script>
   
   <style scoped>
