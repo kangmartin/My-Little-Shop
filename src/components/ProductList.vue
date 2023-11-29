@@ -4,8 +4,18 @@
         <div v-for="product in products" :key="product.id">
             <product :title="product.title" :image="product.image" :originalPrice="product.originalPrice" :currentPrice="product.currentPrice" :rating="product.rating" :showAddToCart="product.showAddToCart"  />
         </div>
+        
     </div>
+   
+
+
+
+
+
+    <h2 class="product-title">Liste des produits</h2>
     </div>
+
+    
 </template>
 
 <script>

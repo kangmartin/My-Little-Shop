@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- Formulaire pour ajouter un produit -->
+
     <form @submit.prevent="addProduct">
       <input v-model="productName" placeholder="Nom du produit" />
       <input v-model="productOldPrice" placeholder="Ancien prix" type="number" />
@@ -9,8 +9,6 @@
       <button type="submit">Ajouter le produit</button>
     </form>
 
-
-    <!-- Liste des produits -->
     <h2 class="product-title">Liste des produits</h2>
     <div v-if="products.length > 0" class="product-list">
       
