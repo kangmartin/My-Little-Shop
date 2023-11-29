@@ -1,9 +1,10 @@
+require('dotenv').config();
 const { Sequelize, DataTypes } = require('sequelize');
 
-const database = 'mylittleshop';
-const username = 'root';
-const password = '';
-const host = 'localhost';
+const database = process.env.DB_DATABASE;
+const username = process.env.DB_USERNAME;
+const password = process.env.DB_PASSWORD;
+const host = process.env.DB_HOST;
 
 
 const sequelize = new Sequelize(database, username, password, {
