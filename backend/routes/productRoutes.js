@@ -3,7 +3,7 @@ const router = express.Router();
 const { addProducts, getAllProducts } = require('../controllers/controllerProducts');
 
 
-router.post('/add', async (req) => {
+router.post('/add', async (req, res) => {
     try {
         const { name, oldPrice, actualPrice, rate } = req.body;
         addProducts(name, oldPrice, actualPrice, rate);
@@ -14,7 +14,7 @@ router.post('/add', async (req) => {
 });
 
 
-router.get('/all', async (res) => {
+router.get('/all', async (req, res) => {
     try {
         const products = await getAllProducts();
         res.json(products);
