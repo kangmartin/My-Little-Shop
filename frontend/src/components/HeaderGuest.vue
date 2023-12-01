@@ -10,7 +10,7 @@
       <div class="nav__right">
         <router-link class="nav__link" to="/registration" v-if="!isLoggedIn">Register</router-link>
         <router-link class="nav__link" to="/login" v-if="!isLoggedIn">Login</router-link>
-        <router-link class="nav__link" to="/admin" v-if="isLoggedIn">Admin</router-link>
+        <router-link class="nav__link" to="/admin" v-if="isLoggedIn && userRole === 'admin'">Admin</router-link>
         <button @click="logout" class="nav__button" v-if="isLoggedIn">Logout</button>
       </div>
     </nav>
@@ -18,19 +18,36 @@
 </template>
 
 <script>
+import { jwtDecode } from "jwt-decode";
 export default {
   data() {
     return {
-      isLoggedIn: false
+      isLoggedIn: false,
+      userRole: null
     };
   },
   mounted() {
-    this.isLoggedIn = !!localStorage.getItem('token');
+    this.checkAuthentication();
   },
   methods: {
+    checkAuthentication() {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const decoded = jwtDecode(token);
+          this.isLoggedIn = true;
+          this.userRole = decoded.user.role; 
+         
+        } catch (error) {
+          console.error('Erreur de décodage du JWT:', error);
+          localStorage.removeItem('token');
+        }
+      }
+    },
     logout() {
       localStorage.removeItem('token');
       this.isLoggedIn = false;
+      this.userRole = null;
       this.$router.push('/login');
     }
   }
