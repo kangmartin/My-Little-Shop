@@ -14,6 +14,15 @@
       <div class="product-rating">
         <span v-for="star in 5" :key="star" class="star" :class="{ filled: star <= product.rate }">★</span>
       </div>
+      <br><br>
+      <button v-if="!isProductInCart(product) && userRole === 'user'" @click="addToCart(product)" class="add-to-cart-button">
+  Add to cart
+</button>
+<button v-if="isProductInCart(product) && userRole === 'user'" disabled class="added-to-cart-button">
+  Added to cart
+</button>
+
+      
     </div>
   </div>
   <div v-else>
@@ -23,9 +32,11 @@
 
 <script>
     import axios from 'axios';
-
+    import { jwtDecode } from "jwt-decode";
 
     export default {
+
+    
       data() {
         return {
           productName: '',
@@ -33,9 +44,18 @@
           productOldPrice: 0,
           productActualPrice: 0,
           productRate: 0,
-          products: []
+          products: [],
+          cart: JSON.parse(localStorage.getItem('cart')) || [],
+          userRole: null,
+
         };
       },
+
+      computed: {
+    isProductInCart() {
+      return product => this.cart.some(item => item.id === product.id);
+    }
+  },
       methods: {
         async fetchProducts() {
           try {
@@ -44,10 +64,36 @@
           } catch (error) {
             console.error('Error when fetching list of products', error);
           }
+        },
+
+
+        addToCart(product) {
+      if (!this.isProductInCart(product)) {
+        this.cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+      }
+    },
+    checkAuthentication() {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const decoded = jwtDecode(token);
+          console.log(decoded); 
+          this.isLoggedIn = true;
+          this.userRole = decoded.user.role; 
+         
+        } catch (error) {
+          console.error('Erreur de décodage du JWT:', error);
+          localStorage.removeItem('token');
         }
-      },
+      }
+    }
+  },
+
+    
       mounted() {
         this.fetchProducts();
+        this.checkAuthentication();
       }
     };
   </script>
@@ -129,6 +175,15 @@
     font-size: 1em;
     border: none;
     cursor: pointer;
+  }
+
+  .added-to-cart-button {
+    background-color: grey;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1em;
+    border: none;
   }
   
   </style>

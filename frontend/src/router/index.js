@@ -8,7 +8,7 @@ import Login from '../views/Login.vue';
 const routes = [
   { path: '/', component: Home },
   { path: '/admin', component: Admin, meta: { requiresAuth: true } },
-  { path: '/cart', component: Cart },
+  { path: '/cart', component: Cart, meta: { requiresAuth: true } },
   { path: '/registration', component: Registration },
   { path: '/login', component: Login }
 ];

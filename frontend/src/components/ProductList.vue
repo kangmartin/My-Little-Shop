@@ -1,4 +1,6 @@
 <template>
+
+    
     <div class="product-list">
         <Product/>
     </div>

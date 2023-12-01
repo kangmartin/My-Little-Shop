@@ -8,13 +8,16 @@
         <a class="nav__link" href="/">My Little Shop</a>
       </div>
       <div class="nav__right">
+        <h2 class="welcome" v-if="isLoggedIn">Welcome, {{ userName }}</h2>
         <router-link class="nav__link" to="/registration" v-if="!isLoggedIn">Register</router-link>
         <router-link class="nav__link" to="/login" v-if="!isLoggedIn">Login</router-link>
-        <router-link class="nav__link" to="/admin" v-if="isLoggedIn && userRole === 'admin'">Admin</router-link>
+        <router-link class="admin" to="/admin" v-if="isLoggedIn && userRole === 'admin'">Admin</router-link>
+        <router-link class="nav__link" to="/cart" v-if="isLoggedIn && userRole === 'user'">Cart</router-link>
         <button @click="logout" class="nav__button" v-if="isLoggedIn">Logout</button>
       </div>
     </nav>
   </header>
+  
 </template>
 
 <script>
@@ -23,7 +26,9 @@ export default {
   data() {
     return {
       isLoggedIn: false,
-      userRole: null
+      userRole: null,
+      userName: null,
+      
     };
   },
   mounted() {
@@ -35,8 +40,10 @@ export default {
       if (token) {
         try {
           const decoded = jwtDecode(token);
+          console.log(decoded); 
           this.isLoggedIn = true;
           this.userRole = decoded.user.role; 
+          this.userName = decoded.user.name;
          
         } catch (error) {
           console.error('Erreur de décodage du JWT:', error);
@@ -44,12 +51,18 @@ export default {
         }
       }
     },
-    logout() {
-      localStorage.removeItem('token');
-      this.isLoggedIn = false;
-      this.userRole = null;
-      this.$router.push('/login');
-    }
+    clearCart() {
+    localStorage.removeItem('cart');
+    this.cart = [];
+  },
+
+  logout() {
+    localStorage.removeItem('token');
+    this.isLoggedIn = false;
+    this.userRole = null;
+    this.clearCart();
+    this.$router.push('/login');
+  }
   }
 };
 </script>
@@ -58,6 +71,27 @@ export default {
 
 <style scoped>
 
+
+.admin{
+  
+  font-size: 1.2rem;
+  text-decoration: none;
+  margin-right: 1rem;
+  transition: color 0.2s ease-in-out;
+  font-weight: bold;
+  background-color: #f39c12;
+  border-radius: 4px;
+  color: white;
+  padding: 4px 4px 4px 4px;
+}
+
+.admin:hover{
+  background-color: #e67e22;
+}
+.welcome{
+  margin-right: 28px;
+ font-size: 21px;
+}
 .nav__button {
   background-color: #1a73e8;
   border: none;

@@ -1,20 +1,22 @@
 <script>
     import ProductList from "../components/ProductList.vue";
-    import HeaderGuest from "../components/HeaderGuest.vue";
+    import HeaderComponent from "../components/HeaderComponent.vue";
     import SignupForm from "../components/SignupForm.vue";
     import LoginForm from "../components/LoginForm.vue";
+    import CartComponent from "../components/CartComponent.vue";
     export default {
   components: {
-    HeaderGuest,
+    HeaderComponent,
     ProductList,
     SignupForm,
-    LoginForm
+    LoginForm,
+    CartComponent
   }
 }
 </script>
 <template>
     
-        <HeaderGuest />
+        <HeaderComponent />
         <ProductList />
 
 </template>

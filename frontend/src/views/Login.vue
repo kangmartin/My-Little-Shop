@@ -1,16 +1,16 @@
 <script>
-    import HeaderGuest from "../components/HeaderGuest.vue";
+    import HeaderComponent from "../components/HeaderComponent.vue";
     import LoginForm from "../components/LoginForm.vue";
     export default {
   components: {
-    HeaderGuest,
+    HeaderComponent,
     LoginForm,
   }
 }
 </script>
 <template>
     
-        <HeaderGuest />
+        <HeaderComponent />
        
         <LoginForm />
 
