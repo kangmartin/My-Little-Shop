@@ -1,6 +1,6 @@
 <template>
   <div v-if="products.length > 0" v-for="product in products" :key="product.id" class="product-card">
-    <img :src="'images/' + product.image" alt="Product Image" class="product-image">
+    <img :src="'http://localhost:3000/images/' + product.image" alt="Product Image" class="product-image">
 
     <div class="product-details">
       <h3 class="product-title">{{ product.name }}</h3>
