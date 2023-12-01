@@ -22,7 +22,7 @@
 
    First, install frontend dependencies:
    ```bash
-   npm install
+   cd frontend && npm install
    ```
    Then, install backend dependencies:
    ```bash
@@ -35,7 +35,7 @@ Set up your database (e.g., MySQL) by importing `schema.sql` to initialize the p
 
 ## Environment Setup
 
-Inside the backend directory, create a `.env` file and include the following details:
+Inside the `backend` directory, create a `.env` file and include the following details:
 ```bash
 DB_HOST=your_host
 DB_USERNAME=your_user
@@ -48,12 +48,15 @@ DB_DATABASE=your_database
 To start the development servers (both must be started):
 
 - **For Frontend:**
+  In `frontend` directory, run:
+
   ```bash
   npm run dev
   ```
 - **For Backend:**
+  In `backend` directory, run:
   ```bash
-  cd backend && npm start
+  npm start
   ```
 
 ## To build frontend for production
