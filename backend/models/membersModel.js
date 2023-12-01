@@ -22,16 +22,15 @@ const Member = sequelize.define('member', {
     },
     role: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 'user'
     },
     isBan: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: false
     },
 });
 
 
-
-
-
-module.exports = { Member, sequelize };
+module.exports = { Member, sequelize, getUserByEmail };
