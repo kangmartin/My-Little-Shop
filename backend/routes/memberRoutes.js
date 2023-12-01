@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { addMember } = require('../controllers/controllerMembers');
 const bcrypt = require('bcrypt');
+const { Member } = require('../models/membersModel');
 const jwt = require('jsonwebtoken');
 
 
