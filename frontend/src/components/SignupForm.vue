@@ -1,20 +1,21 @@
 <template>
     <div class="signup-form">
-      <h2>Inscription</h2>
+      <h1>Registration</h1>
       <form @submit.prevent="submitForm">
         <div class="form-group">
-          <label for="name">Nom:</label>
-          <input type="text" id="name" v-model="user.name">
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
+          <label for="name">Name: </label>
+          <input type="text" id="name" v-model="user.name"><br>
+      
+        
+          <label for="email">Email: </label>
           <input type="email" id="email" v-model="user.email">
-        </div>
-        <div class="form-group">
-          <label for="password">Mot de passe:</label>
+      
+       
+          <label for="password">Password: </label>
           <input type="password" id="password" v-model="user.password">
+          
         </div>
-        <button type="submit" class="btn-submit">S'inscrire</button>
+        <button type="submit" class="btn-submit">Signup</button>
       </form>
     </div>
   </template>
@@ -37,56 +38,66 @@
       submitForm() {
         axios.post('http://localhost:3000/api/members/signup', this.user)
           .then(response => {
-            // Traiter la réponse
-            console.log('Inscription réussie', response);
-            // Redirection ou mise à jour de l'UI après l'inscription réussie
+      
+            console.log('Registration successfuly', response);
+            this.$router.push('/login');
+            
           })
           .catch(error => {
-            // Gérer l'erreur
-            console.error('Erreur d’inscription', error);
-            // Afficher les messages d'erreur à l'utilisateur
+         
+            console.error('Reegistration error', error);
+            
           });
       }
     }
   }
   </script>
-  
-  <style>
-  .signup-form {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input[type="text"],
-  .form-group input[type="email"],
-  .form-group input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .btn-submit {
-    background-color: #007bff;
+ 
+<style scoped>
+h1{
     color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .btn-submit:hover {
-    background-color: #0056b3;
-  }
-  </style>
-  
+    text-align: center;
+    font-weight: bold;
+    }
+
+    form{
+        margin: 5% auto;
+        border: #1a73e8 1px solid;
+        max-width: 450px;
+        width: 100%;
+        padding: 20px;
+        border-radius: 8px;
+        
+    }
+
+    label{
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+        
+    }
+
+    input{
+        width: 300px;
+        height: 30px;
+        border-radius: 4px;
+        border: 1px solid #1a73e8;
+        margin-bottom: 2%;
+        margin-top: 10px;
+    }
+
+    button{
+        
+        height: 30px;
+        border-radius: 4px;
+        border: 1px solid #1a73e8;
+        background-color: #1a73e8;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+
+
+
+</style>
