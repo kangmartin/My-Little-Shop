@@ -2,7 +2,7 @@ require('dotenv').config();
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database/db_connexion');
 
-const Member = sequelize.define('product', {
+const Member = sequelize.define('member', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
