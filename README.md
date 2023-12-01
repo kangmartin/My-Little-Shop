@@ -1,31 +1,70 @@
 # My Little Shop
 
-**A simple shop system using JavaScript and Vue3**
+**A simple shop system using a NodeJS backend and Vue3 frontend.**
 
-## Installation
+## Installation Guide
 
-1. **Clone the repository**
-
+1. **Clone the Repository**
+   
+   Begin by cloning the project to your local machine:
    ```bash
    git clone https://github.com/kangmartin/My-Little-Shop.git
    ```
 
-2. **Navigate to the project folder**
+2. **Access Project Directory**
 
+   Change to the project's root directory:
    ```bash
    cd my-little-shop
    ```
 
-3. **Install dependencies**
+3. **Install Dependencies**
 
+   First, install frontend dependencies:
    ```bash
    npm install
    ```
+   Then, install backend dependencies:
+   ```bash
+   cd backend && npm install
+   ```
 
-## Starting the Project
+## Database Configuration
 
-**Launch the development server**
+Set up your database (e.g., MySQL) by importing `schema.sql` to initialize the project's database.
 
+## Environment Setup
+
+Inside the backend directory, create a `.env` file and include the following details:
 ```bash
-npm run dev 
+DB_HOST=your_host
+DB_USER=your_user
+DB_PASS=your_password
+DB_NAME=your_database
 ```
+
+## Running the Project
+
+To start the development servers (both must be started):
+
+- **For Frontend:**
+  ```bash
+  npm run dev
+  ```
+- **For Backend:**
+  ```bash
+  cd backend && npm start
+  ```
+
+## To build frontend for production
+   
+   ```bash
+   npm run build
+   ```
+   Preview the production build:
+   ```bash
+   npm run preview
+   ```
+   The build files will be located in the `dist` directory.
+
+---
