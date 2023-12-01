@@ -2,7 +2,7 @@ require('dotenv').config();
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../database/db_connexion');
 
-const Product = sequelize.define('product', {
+const Member = sequelize.define('member', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -12,22 +12,26 @@ const Product = sequelize.define('product', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    image: {
+    email: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    old_price: {
-        type: DataTypes.FLOAT,
+    password: {
+        type: DataTypes.STRING,
         allowNull: false
     },
-    actual_price: {
-        type: DataTypes.FLOAT,
+    role: {
+        type: DataTypes.STRING,
         allowNull: false
     },
-    rate: {
-        type: DataTypes.INTEGER,
+    isBan: {
+        type: DataTypes.BOOLEAN,
         allowNull: false
     },
 });
 
-module.exports = { Product, sequelize };
+
+
+
+
+module.exports = { Member, sequelize };

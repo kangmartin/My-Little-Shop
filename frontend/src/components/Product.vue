@@ -4,17 +4,23 @@
 
     <div class="product-details">
       <h3 class="product-title">{{ product.name }}</h3>
-      <p class="product-price"><span class="original-price">{{ product.old_price }}€</span></p>
-      <p class="product-price"><span class="current-price">{{ product.actual_price }}€</span></p>
+      <p class="product-price">
+        <span v-if="product.old_price === product.actual_price" class="current-price">{{ product.actual_price }}€</span>
+        <span v-else>
+          <span class="original-price">{{ product.old_price }}€</span><br>
+          <span class="current-price">{{ product.actual_price }}€</span>
+        </span>
+      </p>
       <div class="product-rating">
         <span v-for="star in 5" :key="star" class="star" :class="{ filled: star <= product.rate }">★</span>
       </div>
     </div>
   </div>
   <div v-else>
-      <p class="product-title">No products available..</p>
-    </div>
+    <p class="product-title">No products available..</p>
+  </div>
 </template>
+
 
   
 <script>
