@@ -1,13 +1,37 @@
 <template>
-  <div>
-    <form @submit.prevent="addProduct">
-      <input v-model="productName" placeholder="Name of product" />
-      <input v-model="productOldPrice" placeholder="Original price" type="number" />
-      <input v-model="productActualPrice" placeholder="New price" type="number" />
-      <input type="file" @change="handleFileUpload" />
-      <input v-model="productRate" placeholder="Rate" type="number" />
-      <button type="submit">Add product</button>
+  <div class="product-form">
+    <h2>Add a product</h2>
+    <form @submit.prevent="addProduct" class="form-group">
+      <div class="form-field">
+        <label for="productName">Name of product:</label>
+        <input id="productName" v-model="productName" placeholder="Enter product name" type="text"/>
+      </div>
+      <div class="form-field">
+        <label for="productOldPrice">Original price:</label>
+        <input id="productOldPrice" v-model="productOldPrice" placeholder="Enter original price" type="number" />
+      </div>
+      <div class="form-field">
+        <label for="useNewPrice">Apply New Price:</label>
+        <input id="useNewPrice" type="checkbox" v-model="useNewPrice" />
+      </div>
+      <div class="form-field" v-if="useNewPrice">
+        <label for="productActualPrice">New price:</label>
+        <input id="productActualPrice" v-model="productActualPrice" placeholder="Enter new price" type="number" />
+      </div>
+      <div class="form-field">
+        <label for="productImage">Product image:</label>
+        <input id="productImage" type="file" @change="handleFileUpload" />
+      </div>
+      <div class="form-field">
+        <label for="productRate">Rate:</label>
+        <input id="productRate" v-model="productRate" placeholder="Enter product rate" type="number" />
+      </div>
+      <button type="submit" class="submit-button">Add product</button>
     </form>
+    <br>
+    <div v-if="isProductAdded" class="success-message">
+      Product added successfully!
+    </div>
   </div>
 </template>
 
@@ -22,7 +46,9 @@ export default {
       productOldPrice: 0,
       productActualPrice: 0,
       productRate: 0,
-      products: []
+      products: [],
+      isProductAdded: false,
+      useNewPrice: false,
     };
   },
   methods: {
@@ -34,7 +60,13 @@ export default {
       formData.append('name', this.productName);
       formData.append('image', this.productImageFile);
       formData.append('oldPrice', this.productOldPrice);
-      formData.append('actualPrice', this.productActualPrice);
+
+      if (this.useNewPrice) {
+        formData.append('actualPrice', this.productActualPrice);
+      } else {
+        formData.append('actualPrice', this.productOldPrice);
+      }
+
       formData.append('rate', this.productRate);
 
       try {
@@ -44,10 +76,76 @@ export default {
           },
         });
         console.log('Produit added:', response.data);
+        this.isProductAdded = true;
+        this.productName = '';
+        this.productImageFile = null;
+        this.productOldPrice = 0;
+        this.productActualPrice = 0;
+        this.productRate = 0;
+
+        setTimeout(() => {
+          this.isProductAdded = false;
+        }, 3000);
       } catch (error) {
-        console.error('Erreur when try to add product', error);
+        console.error('Erreur when trying to add product', error);
       }
     },
   }
 }
 </script>
+
+
+<style scoped>
+
+.success-message {
+  color: green;
+  font-weight: bold;
+}
+.product-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+.form-field {
+  margin-bottom: 15px;
+}
+
+.form-field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.form-field input[type="text"],
+.form-field input[type="number"],
+.form-field input[type="file"] {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+
+.submit-button {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+</style>
