@@ -38,9 +38,9 @@ Set up your database (e.g., MySQL) by importing `schema.sql` to initialize the p
 Inside the backend directory, create a `.env` file and include the following details:
 ```bash
 DB_HOST=your_host
-DB_USER=your_user
-DB_PASS=your_password
-DB_NAME=your_database
+DB_USERNAME=your_user
+DB_PASSWORD=your_password
+DB_DATABASE=your_database
 ```
 
 ## Running the Project
