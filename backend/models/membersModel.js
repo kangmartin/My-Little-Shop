@@ -33,4 +33,4 @@ const Member = sequelize.define('member', {
 });
 
 
-module.exports = { Member, sequelize, getUserByEmail };
+module.exports = { Member, sequelize };
