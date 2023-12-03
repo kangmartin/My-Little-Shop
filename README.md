@@ -55,7 +55,7 @@ DB_PASSWORD=your_password
 DB_DATABASE=your_database
 JWT_SECRET=your_jwt_secret
 ```
-
+You can put whatever you want for the secret JWT
 ## Running the Project
 
 To start the development servers (both must be started):
