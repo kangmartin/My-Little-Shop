@@ -9,8 +9,8 @@
 }
 </script>
 <template>
+
     <HeaderComponent/>
     <CartComponent/>
-  
-
+    
 </template>
