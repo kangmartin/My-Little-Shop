@@ -17,11 +17,15 @@
           Login
         </router-link>
 
+        <router-link class="manage" to="/manage-products" v-if="isLoggedIn && userRole === 'admin'">
+          Manage products
+        </router-link>
+
         <router-link class="admin" to="/admin" v-if="isLoggedIn && userRole === 'admin'">
           Admin
         </router-link>
 
-        <router-link class="nav__link" to="/cart" v-if="isLoggedIn && userRole === 'user'">
+        <router-link class="nav__link" to="/cart" v-if="isLoggedIn && userRole === 'user' && !isBan" >
             Cart
         </router-link>
 
@@ -38,7 +42,8 @@ export default {
     return {
       isLoggedIn: false,
       userRole: null,
-      userName: null,  
+      userName: null, 
+      isBan: null, 
     };
   },
 
@@ -56,6 +61,7 @@ export default {
           this.isLoggedIn = true;
           this.userRole = decoded.user.role; 
           this.userName = decoded.user.name;
+          this.isBan = decoded.user.isBan;
          
         } catch (error) {
           console.error('Error of decode JWT', error);
@@ -93,6 +99,21 @@ export default {
     color: white;
     padding: 4px 4px 4px 4px;
   }
+
+  .manage{
+    
+    font-size: 1.2rem;
+    text-decoration: none;
+    margin-right: 1rem;
+    transition: color 0.2s ease-in-out;
+    font-weight: bold;
+    background-color: #6ec71be5;
+    border-radius: 4px;
+    color: white;
+    padding: 4px 4px 4px 4px;
+  
+  }
+
 
   .admin:hover{
     background-color: #e67e22;
