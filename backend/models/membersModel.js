@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { DataTypes } = require('sequelize');
-const { sequelize } = require('../database/db_connexion');
+const { sequelize } = require('../db_connexion');
 
 const Member = sequelize.define('member', {
     id: {
@@ -22,16 +22,15 @@ const Member = sequelize.define('member', {
     },
     role: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 'user'
     },
     isBan: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: false
     },
 });
-
-
-
 
 
 module.exports = { Member, sequelize };

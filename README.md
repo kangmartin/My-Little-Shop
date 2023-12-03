@@ -46,6 +46,7 @@ DB_HOST=your_host
 DB_USERNAME=your_user
 DB_PASSWORD=your_password
 DB_DATABASE=your_database
+JWT_SECRET=your_jwt_secret
 ```
 
 ## Running the Project

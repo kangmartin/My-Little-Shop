@@ -11,10 +11,6 @@
         <input id="productOldPrice" v-model="productOldPrice" placeholder="Enter original price" type="number" />
       </div>
       <div class="form-field">
-        <label for="useNewPrice">Apply New Price:</label>
-        <input id="useNewPrice" type="checkbox" v-model="useNewPrice" />
-      </div>
-      <div class="form-field" v-if="useNewPrice">
         <label for="productActualPrice">New price:</label>
         <input id="productActualPrice" v-model="productActualPrice" placeholder="Enter new price" type="number" />
       </div>
@@ -48,7 +44,6 @@ export default {
       productRate: 0,
       products: [],
       isProductAdded: false,
-      useNewPrice: false,
     };
   },
   methods: {
@@ -56,16 +51,15 @@ export default {
       this.productImageFile = event.target.files[0];
     },
     async addProduct() {
+
+      
       const formData = new FormData();
       formData.append('name', this.productName);
       formData.append('image', this.productImageFile);
       formData.append('oldPrice', this.productOldPrice);
+      formData.append('actualPrice', this.productActualPrice);
 
-      if (this.useNewPrice) {
-        formData.append('actualPrice', this.productActualPrice);
-      } else {
-        formData.append('actualPrice', this.productOldPrice);
-      }
+   
 
       formData.append('rate', this.productRate);
 
@@ -76,6 +70,7 @@ export default {
           },
         });
         console.log('Produit added:', response.data);
+        this.$emit('product-added');
         this.isProductAdded = true;
         this.productName = '';
         this.productImageFile = null;
@@ -102,14 +97,14 @@ export default {
   font-weight: bold;
 }
 .product-form {
-  max-width: 400px;
-  margin: 0 auto;
+
   padding: 20px;
   border: 1px solid #ccc;
   background-color: #f7f7f7;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
+  height: 567px;
 }
 
 
