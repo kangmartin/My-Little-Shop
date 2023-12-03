@@ -5,15 +5,10 @@
         <div class="form-group">
           <label for="name">Name: </label>
           <input type="text" id="name" v-model="user.name"><br>
-      
-        
           <label for="email">Email: </label>
           <input type="email" id="email" v-model="user.email">
-      
-       
           <label for="password">Password: </label>
           <input type="password" id="password" v-model="user.password">
-          
         </div>
         <button type="submit" class="btn-submit">Signup</button>
       </form>
