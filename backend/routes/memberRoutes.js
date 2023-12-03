@@ -1,6 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { addMember } = require('../controllers/controllerMembers');
+const { 
+    addMember, 
+    getAllMembers, 
+    banMember, 
+    deleteMember, 
+    changeMemberRole,
+    unbanMember
+} = require('../controllers/controllerMembers');
+
 const bcrypt = require('bcrypt');
 const { Member } = require('../models/membersModel');
 const jwt = require('jsonwebtoken');
@@ -55,7 +63,8 @@ router.post('/login', async (req, res) => {
             user: {
                 id: user.id,
                 name: user.name,
-                role: user.role
+                role: user.role,
+                isBan: user.isBan
             }
         };
 
@@ -76,5 +85,64 @@ router.post('/login', async (req, res) => {
     }
 
 });
+
+router.get('/all', async (req, res) => {
+    try {
+        const members = await getAllMembers();
+        res.json(members);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: "Error fetching members" });
+    }
+});
+
+
+router.patch('/ban', async (req, res) => {
+    try {
+        const { email } = req.body;
+        await banMember(email);
+        res.status(200).send({ message: "Member banned successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: "Error banning member" });
+    }
+});
+
+
+router.patch('/unban', async (req, res) => {
+    try {
+        const { email } = req.body;
+        await unbanMember(email);
+        res.status(200).send({ message: "Member unbanned successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: "Error unbanning member" });
+    }
+});
+
+
+router.delete('/delete', async (req, res) => {
+    try {
+        const { email } = req.body;
+        await deleteMember(email);
+        res.status(200).send({ message: "Member deleted successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: "Error deleting member" });
+    }
+});
+
+
+router.patch('/change-role', async (req, res) => {
+    try {
+        const { email, newRole } = req.body;
+        await changeMemberRole(email, newRole);
+        res.status(200).send({ message: "Member role updated successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: "Error updating member role" });
+    }
+});
+
 
 module.exports = router;
