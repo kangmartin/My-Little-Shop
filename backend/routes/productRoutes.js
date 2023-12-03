@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const router = express.Router();
-const { addProducts, getAllProducts } = require('../controllers/controllerProducts');
+const { addProducts, getAllProducts, deleteProduct, updateProduct } = require('../controllers/controllerProducts');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -36,6 +36,42 @@ router.get('/all', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: "Error fetching products" });
+    }
+});
+
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        const productId = req.params.id;
+        const success = await deleteProduct(productId);
+
+        if (success) {
+            res.status(200).send({ message: "Product deleted successfully" });
+        } else {
+            res.status(404).send({ error: "Product not found" });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: "Error deleting product" });
+    }
+});
+
+
+router.put('/update/:id', upload.single('image'), async (req, res) => {
+    try {
+        const productId = req.params.id;
+        const { name, oldPrice, actualPrice, rate } = req.body;
+        const image = req.file ? req.file.filename : null;
+
+        const success = await updateProduct(productId, name, image, oldPrice, actualPrice, rate);
+
+        if (success) {
+            res.status(200).send({ message: "Product updated successfully" });
+        } else {
+            res.status(404).send({ error: "Product not found" });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: "Error updating product" });
     }
 });
 
