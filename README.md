@@ -1,9 +1,9 @@
 
 # My Little Shop
 
-[![ViteJS Version](https://img.shields.io/badge/ViteJS-^4.4.5-8A2BE2.svg)](https://vitejs.dev/)
+[![ViteJS Version](https://img.shields.io/badge/ViteJS->=4.4.5-8A2BE2.svg)](https://vitejs.dev/)
 [![Vue.js Version](https://img.shields.io/badge/VueJS-3-42B883.svg)](https://vuejs.org/)
-[![Node.js Version](https://img.shields.io/badge/NodeJS-^18.0.0-5BAB46.svg)](https://nodejs.org/)
+[![Node.js Version](https://img.shields.io/badge/NodeJS->=18.0.0-5BAB46.svg)](https://nodejs.org/)
 
 
 **A simple shop system using a NodeJS backend, Vue3 frontend (with Vite) and SQL Database** 
