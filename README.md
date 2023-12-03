@@ -1,11 +1,18 @@
-# My Little Shop
 
+# My Little Shop
 
 [![Vue.js Version](https://img.shields.io/badge/vue.js-3-brightgreen.svg)](https://vuejs.org/)
 [![Node.js Version](https://img.shields.io/badge/node.js-%3E=20.0.0-brightgreen.svg)](https://nodejs.org/)
 
-
 **A simple shop system using a NodeJS backend and Vue3 frontend.**
+
+## Features
+- **Login and Registration:** Secure user authentication.
+- **Admin Panel:** Manage users, including deleting accounts, changing roles, or banning users.
+- **Product Management Panel:** Add, edit, and remove products.
+- **Ban System:** Ability to ban users from the system.
+- **Role-Based Access Control:** Two types of roles (user and admin)
+
 
 ## Installation Guide
 
@@ -65,6 +72,21 @@ To start the development servers (both must be started):
   npm start
   ```
 
+## Preconfigured Users
+
+The system includes the following preconfigured users in the database:
+
+| User  | Email               | Password    | Type of role |
+|-------|---------------------|-------------|--------------|
+| Admin | admin@mylittleshop.com | admin | Administrator|
+| Martin| martin@mylittleshop.com | MYPASSWORD | User |
+| Tom   | tom@mylittleshop.com   | MYPASSWORD | User |
+| Louis | louis@mylittleshop.com | MYPASSWORD | User |
+| Théo  | theo@mylittleshop.com  | MYPASSWORD | User |
+| Baba  | baba@mylittleshop.com  | MYPASSWORD | User |
+| Taylor| taylor@swift.com      | MYPASSWORD | User |
+
+
 ## To build frontend for production
    
    ```bash
@@ -75,5 +97,12 @@ To start the development servers (both must be started):
    npm run preview
    ```
    The build files will be located in the `dist` directory.
+
+## Screenshots
+
+![image](https://github.com/kangmartin/My-Little-Shop/assets/88689251/b191dd9c-3e22-4c02-b41a-cca808366549)
+![image](https://github.com/kangmartin/My-Little-Shop/assets/88689251/2f254e1b-8035-4a5b-9113-621cb32ea58c)
+![image](https://github.com/kangmartin/My-Little-Shop/assets/88689251/c87ac3a8-eee5-4d87-897f-eb2cd8b59c33)
+![image](https://github.com/kangmartin/My-Little-Shop/assets/88689251/999bb214-c298-4df3-aa89-0d91a945c1c8)
 
 ---
