@@ -1,13 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
-import Admin from '../views/Admin.vue';
-import Cart from '../views/Cart.vue';
-import Registration from '../views/Registration.vue';
-import Login from '../views/Login.vue';
+import Home from '../views/HomeView.vue';
+import Admin from '../views/AdminView.vue';
+import Cart from '../views/CartView.vue';
+import Registration from '../views/RegistrationView.vue';
+import Login from '../views/LoginView.vue';
+import ManageProducts from '../views/ManageProductsView.vue';
 import { jwtDecode } from "jwt-decode";
 const routes = [
   { path: '/', component: Home },
   { path: '/admin', component: Admin, meta: { requiresAuth: true, requiredRole: 'admin' } },
+  { path: '/manage-products', component: ManageProducts, meta: { requiresAuth: true, requiredRole: 'admin' } },
   { path: '/cart', component: Cart, meta: { requiresAuth: true , requiredRole: 'user' } },
   { path: '/registration', component: Registration },
   { path: '/login', component: Login }
