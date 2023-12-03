@@ -1,6 +1,6 @@
 <template>
     <div>
-      <div class="search">
+      <div class="search" v-if="userRole==='user'">
         <input type="text" v-model="searchQuery" placeholder="Search products..." class="search-input"/>
         <select v-model="sortOrder" class="sort-select">
           <option disabled value="">Filter..</option>
@@ -10,7 +10,7 @@
       </div>
   
       <div class="product-list">
-        <product-card 
+        <ProductCard
           v-if="filteredProducts.length > 0"
           v-for="product in filteredProducts" 
           :key="product.id"
@@ -18,7 +18,7 @@
           :is-product-in-cart="isProductInCart(product)"
           :user-role="userRole"
           @add-to-cart="addToCart">
-        </product-card>
+        </ProductCard>
   
         <div v-else>
           <p class="product-title">No products available..</p>
@@ -60,7 +60,7 @@
    </style>
 
 <script>
-  import ProductCard from './Product.vue';
+  import ProductCard from './ProductCard.vue';
   import axios from 'axios';
   import { jwtDecode } from "jwt-decode";
   
