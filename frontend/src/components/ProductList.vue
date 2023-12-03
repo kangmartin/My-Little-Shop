@@ -1,4 +1,5 @@
 <template>
+    <h2 v-if="isBan" class="ban-message">You are banned ! Contact an administrator to request to lift the ban</h2>
     <div>
       <div class="search" v-if="userRole==='user'">
         <input type="text" v-model="searchQuery" placeholder="Search products..." class="search-input"/>
@@ -17,6 +18,7 @@
           :product="product"
           :is-product-in-cart="isProductInCart(product)"
           :user-role="userRole"
+          :is-ban="isBan" 
           @add-to-cart="addToCart">
         </ProductCard>
   
@@ -36,6 +38,13 @@
     gap: 1%;
     margin: 30px 8%;
 }
+
+  .ban-message {
+    text-align: center;
+    color: #EA2027;
+    font-size: 1.5em;
+    margin-top: 30px;
+  }
 
     .search{
     display: flex;
@@ -75,6 +84,7 @@
         userRole: null,
         searchQuery: '',
         sortOrder: '',
+        isBan: null,
       };
     },
     computed: {
@@ -120,6 +130,8 @@
           try {
             const decoded = jwtDecode(token);
             this.userRole = decoded.user.role;
+            this.isBan = decoded.user.isBan;
+       
           } catch (error) {
             console.error('Erreur de décodage du JWT:', error);
             localStorage.removeItem('token');
