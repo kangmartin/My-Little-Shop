@@ -13,6 +13,4 @@
         <HeaderComponent />
         <br><br>
         <AddProductForm/>
-  
-
 </template>
