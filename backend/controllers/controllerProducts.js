@@ -27,4 +27,47 @@ async function getAllProducts() {
     }
 }
 
-module.exports = { addProducts, getAllProducts };
+async function deleteProduct(productId) {
+    try {
+        const result = await Product.destroy({
+            where: { id: productId }
+        });
+
+        if (result === 0) {
+            console.log('No product found with the given ID.');
+            return false;
+        }
+
+        console.log('Product deleted successfully!');
+        return true;
+    } catch (error) {
+        console.error('Error when trying to delete product', error);
+        return false;
+    }
+}
+
+async function updateProduct(productId, newName, newImage, newOldPrice, newActualPrice, newRate) {
+    try {
+        const productToUpdate = await Product.findByPk(productId);
+
+        if (!productToUpdate) {
+            console.log('No product found with the given ID.');
+            return false;
+        }
+
+        productToUpdate.name = newName || productToUpdate.name;
+        productToUpdate.image = newImage || productToUpdate.image;
+        productToUpdate.old_price = newOldPrice || productToUpdate.old_price;
+        productToUpdate.actual_price = newActualPrice || productToUpdate.actual_price;
+        productToUpdate.rate = newRate || productToUpdate.rate;
+
+        await productToUpdate.save();
+        console.log('Product updated successfully!', productToUpdate.toJSON());
+        return true;
+    } catch (error) {
+        console.error('Error when trying to update product', error);
+        return false;
+    }
+}
+
+module.exports = { addProducts, getAllProducts, deleteProduct, updateProduct};
