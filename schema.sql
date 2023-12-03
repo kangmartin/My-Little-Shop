@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 03 déc. 2023 à 07:17
+-- Généré le : dim. 03 déc. 2023 à 18:06
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -42,7 +42,7 @@ CREATE TABLE `members` (
 
 INSERT INTO `members` (`id`, `name`, `email`, `password`, `role`, `isBan`) VALUES
 (1, 'Admin', 'admin@mylittleshop.com', '$2b$10$oJHLTt.3cjLSNhizrhmD6u9mVJYL24zG8fe2FUBfuF9okYNitwIfu', 'admin', 0),
-(2, 'Martin', 'martin@mylittleshop.com', '$2b$10$VDb5qbb.iImPqOcWZYFhvemFI5Rf9rtAP0vRZ5yIiY3Hszbsh.EHi', 'user', 0),
+(2, 'Martin', 'martin@mylittleshop.com', '$2b$10$VDb5qbb.iImPqOcWZYFhvemFI5Rf9rtAP0vRZ5yIiY3Hszbsh.EHi', 'user', 1),
 (3, 'Tom', 'tom@mylittleshop.com', '$2b$10$0LV9c6GJorrLk2mpNKnLeuMbGkeaTaX7qloS4cBE4hjbIO4PybOSi', 'user', 0),
 (4, 'Louis', 'louis@mylittleshop.com', '$2b$10$i5hj.EVmHl2VJ2FXqGSgeufFOIPeM6/LdceRzlaT0j916BqLRbXD2', 'user', 0),
 (5, 'Théo', 'theo@mylittleshop.com', '$2b$10$VCQ1nVueZSzPVco3x2aqs.bt.lgsKBNeV3KkIwydg7uDND1oWS7nu', 'user', 0),
@@ -59,8 +59,8 @@ CREATE TABLE `products` (
   `id` int(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `old_price` float NOT NULL,
-  `actual_price` float NOT NULL,
+  `old_price` double NOT NULL,
+  `actual_price` double NOT NULL,
   `rate` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
