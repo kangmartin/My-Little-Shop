@@ -3,11 +3,11 @@
       <h1>Registration</h1>
       <form @submit.prevent="submitForm">
         <div class="form-group">
-          <label for="name">Name: </label>
+          <label for="name">Name: </label><br>
           <input type="text" id="name" v-model="user.name"><br>
-          <label for="email">Email: </label>
+          <label for="email">Email: </label><br>
           <input type="email" id="email" v-model="user.email">
-          <label for="password">Password: </label>
+          <label for="password">Password: </label><br>
           <input type="password" id="password" v-model="user.password">
         </div>
         <button type="submit" class="btn-submit">Signup</button>
@@ -49,6 +49,7 @@
   </script>
  
 <style scoped>
+
 h1{
     color: white;
     text-align: center;
@@ -58,11 +59,11 @@ h1{
     form{
         margin: 5% auto;
         border: #1a73e8 1px solid;
-        max-width: 450px;
+        max-width: 400px;
         width: 100%;
         padding: 20px;
         border-radius: 8px;
-        
+        text-align: center;
     }
 
     label{
@@ -90,6 +91,8 @@ h1{
         color: white;
         font-weight: bold;
         font-size: 1.2rem;
+        
+        
     }
 
 
