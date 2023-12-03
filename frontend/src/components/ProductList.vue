@@ -23,6 +23,7 @@
         <div v-else>
           <p class="product-title">No products available..</p>
         </div>
+        
       </div>
     </div>
   </template>
@@ -131,7 +132,7 @@
       this.checkAuthentication();
     }
   };
-  
+
   </script>
   
  
