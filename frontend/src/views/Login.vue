@@ -11,7 +11,6 @@
 <template>
     
         <HeaderComponent />
-       
         <LoginForm />
 
 </template>
