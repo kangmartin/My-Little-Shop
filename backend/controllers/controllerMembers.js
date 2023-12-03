@@ -19,4 +19,71 @@ async function addMember(name, email, password) {
     }
 }
 
-module.exports = { addMember };
+async function getAllMembers() {
+    try {
+        const members = await Member.findAll({
+            attributes: ['name', 'email', 'isBan', 'role']
+        });
+        console.log('List of all members', members);
+        return members;
+    } catch (error) {
+        console.error('Error when fetching all members', error);
+        return [];
+    }
+}
+
+
+async function banMember(email) {
+    try {
+        const result = await Member.update({ isBan: true }, {
+            where: { email: email }
+        });
+
+        console.log('Member banned successfully!');
+        return result;
+    } catch (error) {
+        console.error('Error when trying to ban member!', error);
+    }
+}
+
+async function unbanMember(email) {
+    try {
+        const result = await Member.update({ isBan: false }, {
+            where: { email: email }
+        });
+
+        console.log('Member unbanned successfully!');
+        return result;
+    } catch (error) {
+        console.error('Error when trying to unban member!', error);
+    }
+}
+
+async function deleteMember(email) {
+    try {
+        const result = await Member.destroy({
+            where: { email: email }
+        });
+
+        console.log('Member deleted successfully!');
+        return result;
+    } catch (error) {
+        console.error('Error when trying to delete member!', error);
+    }
+}
+
+async function changeMemberRole(email, newRole) {
+    try {
+        const result = await Member.update({ role: newRole }, {
+            where: { email: email }
+        });
+
+        console.log('Member role updated successfully!');
+        return result;
+    } catch (error) {
+        console.error('Error when trying to update member role!', error);
+    }
+}
+
+module.exports = { addMember, getAllMembers, banMember, deleteMember, changeMemberRole, unbanMember };
+
