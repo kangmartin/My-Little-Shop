@@ -17,11 +17,11 @@ const Product = sequelize.define('product', {
         allowNull: false
     },
     old_price: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.DOUBLE,
         allowNull: false
     },
     actual_price: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.DOUBLE,
         allowNull: false
     },
     rate: {

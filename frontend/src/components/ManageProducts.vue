@@ -15,6 +15,12 @@
         <h3>Edit Product</h3>
         <span>Product Name: </span>
         <input type="text" v-model="editingProduct.name" placeholder="Product Name"><br>
+        <span>Old Price: </span>
+        <input type="number" v-model="editingProduct.old_price" placeholder="Old Price"><br>
+        <span>Actual Price: </span>
+        <input type="number" v-model="editingProduct.actual_price" placeholder="New Price"><br>
+        <span>Rating: </span>
+        <input type="number" v-model="editingProduct.rate" placeholder="Rating"><br>
         <button @click="updateProduct">Save Changes</button>
       </div>
     </div>
@@ -52,20 +58,36 @@
     },
     
     editProduct(product) {
-      this.editingProduct = { ...product };
+      this.editingProduct = JSON.parse(JSON.stringify(product));
+      console.log("Editing Product:", this.editingProduct);
     },
-
     async updateProduct() {
   try {
-    console.log("Before Update:", this.editingProduct);
-    await axios.put(`http://localhost:3000/api/products/update/${this.editingProduct.id}`, this.editingProduct);
-    console.log("After Update:", this.editingProduct);
-    this.fetchProducts();
+    // Mappage des propriétés pour correspondre aux attentes du backend
+    const productData = {
+      name: this.editingProduct.name,
+      oldPrice: this.editingProduct.old_price,
+      actualPrice: this.editingProduct.actual_price,
+      rate: this.editingProduct.rate
+    };
+
+    console.log("Data to be sent to API:", productData);
+    const response = await axios.put(`http://localhost:3000/api/products/update/${this.editingProduct.id}`, productData);
+    console.log("API Response:", response.data);
+
+    // Mise à jour de la liste des produits
+    let index = this.products.findIndex(p => p.id === this.editingProduct.id);
+    if (index !== -1) {
+      this.products[index] = { ...this.editingProduct };
+    }
+
+    // Réinitialisation de editingProduct
     this.editingProduct = null;
   } catch (error) {
     console.error('Error when updating product:', error);
   }
 },
+
 
     async fetchProducts() {
       try {
