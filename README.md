@@ -101,8 +101,11 @@ The system includes the following preconfigured users in the database:
 ## Screenshots
 
 ![image](https://github.com/kangmartin/My-Little-Shop/assets/88689251/b191dd9c-3e22-4c02-b41a-cca808366549)
-![image](https://github.com/kangmartin/My-Little-Shop/assets/88689251/2f254e1b-8035-4a5b-9113-621cb32ea58c)
+
 ![image](https://github.com/kangmartin/My-Little-Shop/assets/88689251/c87ac3a8-eee5-4d87-897f-eb2cd8b59c33)
+
 ![image](https://github.com/kangmartin/My-Little-Shop/assets/88689251/999bb214-c298-4df3-aa89-0d91a945c1c8)
+
+![image](https://github.com/kangmartin/My-Little-Shop/assets/88689251/2f254e1b-8035-4a5b-9113-621cb32ea58c)
 
 ---
