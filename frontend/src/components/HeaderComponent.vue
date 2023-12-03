@@ -58,7 +58,7 @@ export default {
           this.userName = decoded.user.name;
          
         } catch (error) {
-          console.error('Erreur de décodage du JWT:', error);
+          console.error('Error of decode JWT', error);
           localStorage.removeItem('token');
         }
       }
