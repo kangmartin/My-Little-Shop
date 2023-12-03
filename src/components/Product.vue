@@ -40,43 +40,7 @@
           } catch (error) {
             console.error('Error when fetching list of products', error);
           }
-        },
-        async addProduct() {
-          const formData = new FormData();
-          formData.append('name', this.productName);
-          formData.append('image', this.productImage);
-          formData.append('oldPrice', this.productOldPrice);
-          formData.append('actualPrice', this.productActualPrice);
-          formData.append('rate', this.productRate);
-
-          try {
-            const response = await axios.post('http://localhost:3000/api/products/add', formData, {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-              },
-            });
-            console.log('Produit added:', response.data);
-          } catch (error) {
-            console.error('Erreur when try to add product', error);
-          }
-        },
-        async editProduct(product) {
-          try {
-            const response = await axios.put(`http://localhost:3000/api/products/${product.id}`, product);
-            console.log('Produit edited:', response.data);
-          } catch (error) {
-            console.error('Erreur when try to edit product', error);
-          }
-        },
-        async deleteProduct(product) {
-          try {
-            const response = await axios.delete(`http://localhost:3000/api/products/${product.id}`);
-            console.log('Produit deleted:', response.data);
-            this.fetchProducts();
-          } catch (error) {
-            console.error('Erreur when try to delete product', error);
-          }
-        },
+        }
       },
       mounted() {
         this.fetchProducts();
