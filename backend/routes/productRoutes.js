@@ -63,7 +63,8 @@ router.put('/update/:id', upload.single('image'), async (req, res) => {
         const image = req.file ? req.file.filename : null;
 
         const success = await updateProduct(productId, name, image, oldPrice, actualPrice, rate);
-
+        console.log("req.body:", req.body);
+        console.log("req.params:", req.params);
         if (success) {
             res.status(200).send({ message: "Product updated successfully" });
         } else {

@@ -32,5 +32,4 @@ const Member = sequelize.define('member', {
     },
 });
 
-
 module.exports = { Member, sequelize };

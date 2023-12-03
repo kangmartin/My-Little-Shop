@@ -55,11 +55,13 @@ async function updateProduct(productId, newName, newImage, newOldPrice, newActua
             return false;
         }
 
-        productToUpdate.name = newName || productToUpdate.name;
-        productToUpdate.image = newImage || productToUpdate.image;
-        productToUpdate.old_price = newOldPrice || productToUpdate.old_price;
-        productToUpdate.actual_price = newActualPrice || productToUpdate.actual_price;
-        productToUpdate.rate = newRate || productToUpdate.rate;
+        productToUpdate.name = newName ?? productToUpdate.name;
+        productToUpdate.image = newImage ?? productToUpdate.image;
+        productToUpdate.old_price = newOldPrice ?? productToUpdate.old_price;
+        productToUpdate.actual_price = newActualPrice ?? productToUpdate.actual_price;
+        productToUpdate.rate = newRate ?? productToUpdate.rate;
+
+        console.log('aaaaaaaaaaaaaaaaa:', productToUpdate.toJSON());
 
         await productToUpdate.save();
         console.log('Product updated successfully!', productToUpdate.toJSON());
@@ -69,5 +71,6 @@ async function updateProduct(productId, newName, newImage, newOldPrice, newActua
         return false;
     }
 }
+
 
 module.exports = { addProducts, getAllProducts, deleteProduct, updateProduct};
