@@ -4,7 +4,7 @@
 [![Vue.js Version](https://img.shields.io/badge/vue.js-3-brightgreen.svg)](https://vuejs.org/)
 [![Node.js Version](https://img.shields.io/badge/node.js-%3E=20.0.0-brightgreen.svg)](https://nodejs.org/)
 
-**A simple shop system using a NodeJS backend and Vue3 frontend. (with Vite)** 
+**A simple shop system using a NodeJS backend, Vue3 frontend (with Vite) and SQL Database** 
 
 ## Features
 - **Authentication:** Secure user authentication.
