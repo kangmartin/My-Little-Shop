@@ -3,21 +3,25 @@
     <img :src="'http://localhost:3000/images/' + product.image" alt="Product Image" class="product-image">
     <div class="product-details">
       <h3 class="product-title">{{ product.name }}</h3>
+      
+      
       <p class="product-price">
-        <span v-if="product.old_price === product.actual_price" class="current-price">{{ product.actual_price }}€</span>
+        <span v-if="product.old_price === product.actual_price" class="current-price simple-price">{{ product.actual_price }}€</span>
         <span v-else>
-          <span class="original-price">{{ product.old_price }}€</span><br>
+          <span class="original-price">{{ product.old_price }}€</span>
+          <span v-if="product.old_price > product.actual_price" class="discount-label">{{ discountPercentage }}% off</span><br><br>
           <span class="current-price">{{ product.actual_price }}€</span>
+          
         </span>
       </p>
       <div class="product-rating">
         <span v-for="star in 5" :key="star" class="star" :class="{ filled: star <= product.rate }">★</span>
       </div>
       <br><br>
-      <button v-if="!isProductInCart && userRole === 'user'" @click="addToCart" class="add-to-cart-button">
+      <button v-if="!isProductInCart && userRole === 'user' && !isBan" @click="addToCart" class="add-to-cart-button">
         Add to cart
       </button>
-      <button v-if="isProductInCart && userRole === 'user'" disabled class="added-to-cart-button">
+      <button v-if="isProductInCart && userRole === 'user' && !isBan" disabled class="added-to-cart-button">
         Added to cart
       </button>
     </div>
@@ -30,11 +34,20 @@ export default {
   props: {
     product: Object,
     isProductInCart: Boolean,
-    userRole: String
+    userRole: String,
+    isBan: Boolean
   },
   methods: {
     addToCart() {
       this.$emit('add-to-cart', this.product);
+    }
+  },
+  computed: {
+    discountPercentage() {
+      if (this.product.old_price > this.product.actual_price) {
+        return Math.round(100 - (this.product.actual_price / this.product.old_price * 100));
+      }
+      return 0;
     }
   }
 };
@@ -42,6 +55,23 @@ export default {
 </script>
 
 <style scoped>
+
+
+.simple-price {
+  margin-top: 37px;
+}
+.discount-label {
+    background-color: red; 
+    color: white;
+    padding: 2px 5px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    margin-right: 5px;
+    font-weight: bold;
+    margin-left: 17px;
+  }
+
+
 .product-card {
   width: 300px;
   border: 0.5px solid #ddd;
@@ -117,6 +147,7 @@ export default {
   font-size: 1em;
   border: none;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .added-to-cart-button {
@@ -126,6 +157,7 @@ export default {
   border-radius: 5px;
   font-size: 1em;
   border: none;
+  margin-bottom: 10px;
 }
 
 </style>
