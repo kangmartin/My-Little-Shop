@@ -9,10 +9,22 @@
       </div>
       <div class="nav__right">
         <h2 class="welcome" v-if="isLoggedIn">Welcome, {{ userName }}</h2>
-        <router-link class="nav__link" to="/registration" v-if="!isLoggedIn">Register</router-link>
-        <router-link class="nav__link" to="/login" v-if="!isLoggedIn">Login</router-link>
-        <router-link class="admin" to="/admin" v-if="isLoggedIn && userRole === 'admin'">Admin</router-link>
-        <router-link class="nav__link" to="/cart" v-if="isLoggedIn && userRole === 'user'">Cart</router-link>
+        <router-link class="nav__link" to="/registration" v-if="!isLoggedIn">
+          Register
+        </router-link>
+
+        <router-link class="nav__link" to="/login" v-if="!isLoggedIn">
+          Login
+        </router-link>
+
+        <router-link class="admin" to="/admin" v-if="isLoggedIn && userRole === 'admin'">
+          Admin
+        </router-link>
+
+        <router-link class="nav__link" to="/cart" v-if="isLoggedIn && userRole === 'user'">
+            Cart
+        </router-link>
+
         <button @click="logout" class="nav__button" v-if="isLoggedIn">Logout</button>
       </div>
     </nav>
@@ -159,6 +171,3 @@ export default {
   }
 
 </style>
-
-
-
