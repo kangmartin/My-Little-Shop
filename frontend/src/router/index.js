@@ -6,13 +6,14 @@ import Registration from '../views/RegistrationView.vue';
 import Login from '../views/LoginView.vue';
 import ManageProducts from '../views/ManageProductsView.vue';
 import { jwtDecode } from "jwt-decode";
+
 const routes = [
   { path: '/', component: Home },
   { path: '/admin', component: Admin, meta: { requiresAuth: true, requiredRole: 'admin' } },
   { path: '/manage-products', component: ManageProducts, meta: { requiresAuth: true, requiredRole: 'admin' } },
   { path: '/cart', component: Cart, meta: { requiresAuth: true , requiredRole: 'user' } },
-  { path: '/registration', component: Registration },
-  { path: '/login', component: Login }
+  { path: '/registration', component: Registration, meta: { requiresUnauth: true } },
+  { path: '/login', component: Login, meta: { requiresUnauth: true } }
 ];
 
 const router = createRouter({
@@ -43,6 +44,13 @@ router.beforeEach((to, from, next) => {
       } else {
         next();
       }
+    }
+  } else if (to.matched.some(record => record.meta.requiresUnauth)) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      next({ path: '/' });
+    } else {
+      next();
     }
   } else {
     next();

@@ -5,5 +5,5 @@ RUN npm install
 COPY . .
 RUN npm run build
 EXPOSE 8080
-RUN npm install -g http-server
-CMD ["http-server", "dist"]
+RUN npm install -g serve
+CMD ["serve", "dist", "-s", "-p", "8080"]
