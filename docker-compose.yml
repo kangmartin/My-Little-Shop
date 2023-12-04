@@ -12,7 +12,8 @@ services:
       - DB_PASSWORD=password
       - DB_DATABASE=database
       - JWT_SECRET=your_jwt_secret
-    restart: always
+    volumes:
+      - backend-images:/usr/src/app/images 
 
   frontend:
     build: ./frontend
@@ -20,7 +21,6 @@ services:
       - "8080:8080"
     depends_on:
       - backend
-    restart: always
 
   db:
     image: mysql:5.7
@@ -34,7 +34,7 @@ services:
     volumes:
       - db-data:/var/lib/mysql
       - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
-    restart: always
 
 volumes:
   db-data:
+  backend-images:
