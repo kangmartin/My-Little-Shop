@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USERNAME=user  # Utilisateur par défaut
+      - DB_PASSWORD=password  # Mot de passe par défaut
+      - DB_DATABASE=database  # Nom de la base de données par défaut
+      - JWT_SECRET=jwtsecret  # Clé secrète JWT par défaut
+    restart: always
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+    restart: always
+
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password  # Mot de passe root par défaut
+      - MYSQL_DATABASE=database  # Nom de la base de données par défaut
+      - MYSQL_USER=user  # Utilisateur par défaut
+      - MYSQL_PASSWORD=password  # Mot de passe par défaut
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    restart: always
+
+volumes:
+  db-data:
