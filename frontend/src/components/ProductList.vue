@@ -23,7 +23,7 @@
         </ProductCard>
   
         <div v-else>
-          <p class="product-title">No products available..</p>
+          <p class="product-title">{{ message }}</p>
         </div>
         
       </div>
@@ -85,6 +85,7 @@
         searchQuery: '',
         sortOrder: '',
         isBan: null,
+        message: 'Loading...',
       };
     },
     computed: {
@@ -142,6 +143,11 @@
     mounted() {
       this.fetchProducts();
       this.checkAuthentication();
+      setTimeout(() => {
+      if (this.filteredProducts.length === 0) {
+        this.message = 'No products available..';
+      }
+    }, 2000);
     }
   };
 
