@@ -8,6 +8,9 @@
         <a class="nav__link" href="/">My Little Shop</a>
       </div>
       <div class="nav__right">
+        <router-link class="nav__link products-link" to="/products">
+          Products List
+        </router-link>
         <h2 class="welcome" v-if="isLoggedIn">Welcome, {{ userName }}</h2>
         <router-link class="nav__link" to="/registration" v-if="!isLoggedIn">
           Register
@@ -112,6 +115,20 @@ export default {
     color: white;
     padding: 4px 4px 4px 4px;
   
+  }
+
+  .products-link {
+    background-color: #8e44ad !important;
+    border-radius: 4px;
+    color: white !important;
+    padding: 4px 8px !important;
+    margin-right: 1rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .products-link:hover {
+    background-color: #732d91 !important;
   }
 
 

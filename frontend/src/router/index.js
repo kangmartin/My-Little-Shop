@@ -5,10 +5,12 @@ import Cart from '../views/CartView.vue';
 import Registration from '../views/RegistrationView.vue';
 import Login from '../views/LoginView.vue';
 import ManageProducts from '../views/ManageProductsView.vue';
+import ProductsList from '../views/ProductsListView.vue';
 import { jwtDecode } from "jwt-decode";
 
 const routes = [
   { path: '/', component: Home },
+  { path: '/products', component: ProductsList },
   { path: '/admin', component: Admin, meta: { requiresAuth: true, requiredRole: 'admin' } },
   { path: '/manage-products', component: ManageProducts, meta: { requiresAuth: true, requiredRole: 'admin' } },
   { path: '/cart', component: Cart, meta: { requiresAuth: true , requiredRole: 'user' } },
