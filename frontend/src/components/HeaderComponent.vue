@@ -25,8 +25,8 @@
           Admin
         </router-link>
 
-        <router-link class="nav__link" to="/cart" v-if="isLoggedIn && userRole === 'user' && !isBan" >
-            Cart
+        <router-link class="nav__link cart-link" to="/cart" v-if="isLoggedIn && userRole === 'user' && !isBan" >
+            Cart <span class="cart-count" v-if="cartCount > 0">({{ cartCount }})</span>
         </router-link>
 
         <button @click="logout" class="nav__button" v-if="isLoggedIn">Logout</button>
@@ -43,12 +43,34 @@ export default {
       isLoggedIn: false,
       userRole: null,
       userName: null, 
-      isBan: null, 
+      isBan: null,
+      cart: [],
     };
   },
 
   mounted() {
     this.checkAuthentication();
+    this.loadCart();
+    
+    // Listen for cart updates from other components
+    window.addEventListener('storage', this.handleStorageChange);
+    // Also check for cart updates periodically (for same-tab updates)
+    this.cartUpdateInterval = setInterval(() => {
+      this.loadCart();
+    }, 1000);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener('storage', this.handleStorageChange);
+    if (this.cartUpdateInterval) {
+      clearInterval(this.cartUpdateInterval);
+    }
+  },
+
+  computed: {
+    cartCount() {
+      return this.cart.length;
+    }
   },
 
   methods: {
@@ -67,6 +89,16 @@ export default {
           console.error('Error of decode JWT', error);
           localStorage.removeItem('token');
         }
+      }
+    },
+
+    loadCart() {
+      this.cart = JSON.parse(localStorage.getItem('cart')) || [];
+    },
+
+    handleStorageChange(event) {
+      if (event.key === 'cart') {
+        this.loadCart();
       }
     },
 
@@ -189,6 +221,14 @@ export default {
     border-radius: 4px;
     color: white;
     padding: 4px 4px 4px 4px;
+  }
+
+  .cart-count {
+    background-color: #e74c3c;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.9em;
+    margin-left: 4px;
   }
 
 </style>
