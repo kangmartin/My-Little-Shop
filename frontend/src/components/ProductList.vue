@@ -8,6 +8,7 @@
           <option value="ascending">Price: Low to High</option>
           <option value="descending">Price: High to Low</option>
         </select>
+        <button @click="resetFilters" class="reset-button">Reset Filters</button>
       </div>
   
       <div class="product-list">
@@ -53,11 +54,32 @@
 
     }
 
+    .search-input {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
     .sort-select {
         padding: 10px;
         margin-left: 10px;
         border: 1px solid #ddd;
         border-radius: 4px;
+    }
+
+    .reset-button {
+        padding: 10px 15px;
+        margin-left: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .reset-button:hover {
+        background-color: #e9ecef;
     }
 
     .product-title {
@@ -124,6 +146,10 @@
           this.cart.push(product);
           localStorage.setItem('cart', JSON.stringify(this.cart));
         }
+      },
+      resetFilters() {
+        this.searchQuery = '';
+        this.sortOrder = '';
       },
       checkAuthentication() {
         const token = localStorage.getItem('token');
