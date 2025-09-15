@@ -123,6 +123,8 @@
         if (!this.isProductInCart(product)) {
           this.cart.push(product);
           localStorage.setItem('cart', JSON.stringify(this.cart));
+          // Emit custom event to notify other components
+          window.dispatchEvent(new CustomEvent('cartUpdated'));
         }
       },
       checkAuthentication() {

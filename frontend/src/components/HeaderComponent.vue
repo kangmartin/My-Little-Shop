@@ -26,7 +26,7 @@
         </router-link>
 
         <router-link class="nav__link" to="/cart" v-if="isLoggedIn && userRole === 'user' && !isBan" >
-            Cart
+            Cart ({{ cartItemCount }})
         </router-link>
 
         <button @click="logout" class="nav__button" v-if="isLoggedIn">Logout</button>
@@ -43,12 +43,23 @@ export default {
       isLoggedIn: false,
       userRole: null,
       userName: null, 
-      isBan: null, 
+      isBan: null,
+      cartItemCount: 0,
     };
   },
 
   mounted() {
     this.checkAuthentication();
+    this.updateCartCount();
+    // Listen for storage changes to update cart count when localStorage changes
+    window.addEventListener('storage', this.handleStorageChange);
+    // Listen for custom cart update events
+    window.addEventListener('cartUpdated', this.updateCartCount);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener('storage', this.handleStorageChange);
+    window.removeEventListener('cartUpdated', this.updateCartCount);
   },
 
   methods: {
@@ -70,9 +81,21 @@ export default {
       }
     },
 
+    updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      this.cartItemCount = cart.length;
+    },
+
+    handleStorageChange(event) {
+      if (event.key === 'cart') {
+        this.updateCartCount();
+      }
+    },
+
   clearCart() {
     localStorage.removeItem('cart');
     this.cart = [];
+    this.updateCartCount();
   },
 
   logout() {

@@ -49,7 +49,9 @@ export default {
     removeFromCart(productId) {
       this.cart = this.cart.filter(item => item.id !== productId);
       localStorage.setItem('cart', JSON.stringify(this.cart));
-      this.calculateTotalPrice(); 
+      this.calculateTotalPrice();
+      // Emit custom event to notify other components
+      window.dispatchEvent(new CustomEvent('cartUpdated'));
     },
     calculateTotalPrice() {
       this.totalPrice = this.cart.reduce((total, item) => total + item.actual_price, 0);
